@@ -6,6 +6,6 @@ app.get('/', function (req, res) {
     res.send('Hello Dev!');
 });
 
-app.listen(8007, function () {
+app.listen(80, function () {
     console.log('Dev app listening on port 8007!');
 });
