@@ -7,21 +7,26 @@ const app = express();
 
 
 app.get('/', function (req, res) {
-    res.write('Hello Dev x!');
 
     db.connect(config.link, {useUnifiedTopology:true, useNewUrlParser:true})
         .then(()=>{
+
+            res.set('Content-Type', 'text/html');
+            res.write('Hello Users!');
+            
             console.log('Connected to MongoDB!');
            
             User.find({})
+            .lean()
             .then( results =>{
-                
-                results.forEach( rows => {
-                    res.write( JSON.stringify(rows) );
-                } );
-                
-                res.send('Done!');
 
+                res.write('<ul>');
+                results.forEach( rows => {
+                    res.write('<li>' + rows.name + '</li>')
+                } );
+                res.write('</ul>')
+                res.end('Done!');
+                
             }).catch( e => { throw e });
             
         }).catch( e => { throw e });
