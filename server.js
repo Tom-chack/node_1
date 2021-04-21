@@ -7,7 +7,7 @@ const app = express();
 
 
 app.get('/', function (req, res) {
-    res.send('Hello Dev!');
+    res.send('Hello Dev x!');
 
     db.connect(config.link, {useUnifiedTopology:true, useNewUrlParser:true})
         .then(()=>{
