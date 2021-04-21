@@ -13,13 +13,19 @@ app.get('/', function (req, res) {
         .then(()=>{
             console.log('Connected to MongoDB!');
            
+            User.find({})
+            .then( results =>{
+                
+                results.forEach( rows => {
+                    res.send( JSON.stringify(rows) );
+                } );
+                
+            }).catch( e => { throw e });
             
-        }).catch( e => {
-            console.log(e);
-        });
+        }).catch( e => { throw e });
 
 });
 
 app.listen(80, function () {
-    console.log('Dev app listening on port 8007!');
+    console.log('Dev app listening on port 80!');
 });
