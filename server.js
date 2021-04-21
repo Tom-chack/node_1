@@ -7,7 +7,7 @@ const app = express();
 
 
 app.get('/', function (req, res) {
-    res.send('Hello Dev x!');
+    res.write('Hello Dev x!');
 
     db.connect(config.link, {useUnifiedTopology:true, useNewUrlParser:true})
         .then(()=>{
@@ -17,9 +17,11 @@ app.get('/', function (req, res) {
             .then( results =>{
                 
                 results.forEach( rows => {
-                    res.send( JSON.stringify(rows) );
+                    res.write( JSON.stringify(rows) );
                 } );
                 
+                res.send('Done!');
+
             }).catch( e => { throw e });
             
         }).catch( e => { throw e });
