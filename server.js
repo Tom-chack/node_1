@@ -31,10 +31,9 @@ app.get('/', function (req, res) {
                 users_html = users_html.replace('{users}', user_list);
                 res.write(users_html);
                 res.end();
-            }).catch( e => { throw e });
         }).catch( e => { throw e });
+    }).catch( e => { throw e });
 });
-
 
 app.post('/save', function (req, res) {
     db.connect(config.link, {useUnifiedTopology:true, useNewUrlParser:true})
@@ -49,7 +48,7 @@ app.post('/save', function (req, res) {
                     res.redirect('/?m=1&user=' + name);
                 })
                 .catch( e => { throw e });
-        }).catch( e => { throw e });
+    }).catch( e => { throw e });
 });
 
 app.listen(80, function () {
